@@ -8,7 +8,7 @@
 
 class CConfig
 {
-private:
+private: 
 	CConfig();
 public:
 	~CConfig();
@@ -49,7 +49,9 @@ public:
 	int  GetIntDefault(const char *p_itemname,const int def);
 
 public:
-	std::vector<LPCConfItem> m_ConfigItemList; 
+	
+	// 用于存储配置文件中所有的配置项
+	std::vector<LPCConfItem> m_ConfigItemList;
 
 };
 

@@ -28,7 +28,7 @@
 #define NGX_LOG_DEBUG             8    //调试 【debug】：最低级别
 
 //#define NGX_ERROR_LOG_PATH       "logs/error1.log"   //定义日志存放的路径和文件名 
-#define NGX_ERROR_LOG_PATH       "error.log"   //定义日志存放的路径和文件名 
+#define NGX_ERROR_LOG_PATH       "error.log"   // 如果配置文件中没有配置日志路径，则默认使用这个路径
 
 //进程相关----------------------
 //标记当前进程类型

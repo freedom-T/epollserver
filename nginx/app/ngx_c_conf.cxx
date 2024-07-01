@@ -69,6 +69,7 @@ bool CConfig::Load(const char *pconfName)
 			continue;
 
         //这种 “ListenPort = 5678”走下来；
+        //找到第一个出现等号的位置
         char *ptmp = strchr(linebuf,'=');
         if(ptmp != NULL)
         {
@@ -77,10 +78,19 @@ bool CConfig::Load(const char *pconfName)
             strncpy(p_confitem->ItemName,linebuf,(int)(ptmp-linebuf)); //等号左侧的拷贝到p_confitem->ItemName
             strcpy(p_confitem->ItemContent,ptmp+1);                    //等号右侧的拷贝到p_confitem->ItemContent
 
+
+            // 清除 p_confitem->ItemName 字符串右侧的空格
             Rtrim(p_confitem->ItemName);
-			Ltrim(p_confitem->ItemName);
-			Rtrim(p_confitem->ItemContent);
-			Ltrim(p_confitem->ItemContent);
+
+            // 清除 p_confitem->ItemName 字符串左侧的空格
+            Ltrim(p_confitem->ItemName);
+
+            // 清除 p_confitem->ItemContent 字符串右侧的空格
+            Rtrim(p_confitem->ItemContent);
+
+            // 清除 p_confitem->ItemContent 字符串左侧的空格
+            Ltrim(p_confitem->ItemContent);
+
 
             m_ConfigItemList.push_back(p_confitem);  //内存要释放，因为这里是new出来的 
         } //end if
@@ -101,6 +111,7 @@ const char *CConfig::GetString(const char *p_itemname)
 	}//end for
 	return NULL;
 }
+
 //根据ItemName获取数字类型配置信息，不修改不用互斥
 int CConfig::GetIntDefault(const char *p_itemname,const int def)
 {

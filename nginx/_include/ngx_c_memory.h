@@ -44,8 +44,11 @@ public:
 	//-------
 
 public:
-	void *AllocMemory(int memCount,bool ifmemset);
-	void FreeMemory(void *point);
+ // 声明一个名为 AllocMemory 的函数，用于分配指定大小的内存
+void *AllocMemory(int memCount,bool ifmemset); 
+// 声明一个名为 FreeMemory 函数，用于释放先前分配的内存地址
+void FreeMemory(void *point); 
+
 	
 };
 

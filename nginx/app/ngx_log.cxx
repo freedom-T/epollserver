@@ -29,6 +29,7 @@ static u_char err_levels[][20]  =
     {"info"},      //7：信息
     {"debug"}      //8：调试
 };
+
 ngx_log_t   ngx_log;
 
 void ngx_log_stderr(int err, const char *fmt, ...)
@@ -39,11 +40,12 @@ void ngx_log_stderr(int err, const char *fmt, ...)
 
     memset(errstr,0,sizeof(errstr));     //我个人加的，这块有必要加，至少在va_end处理之前有必要，否则字符串没有结束标记不行的；***************************
 
-    last = errstr + NGX_MAX_ERROR_STR;        //last指向整个buffer最后去了【指向最后一个有效位置的后面也就是非有效位】，作为一个标记，防止输出内容超过这么长,
-                                                    //其实我认为这有问题，所以我才在上边errstr[NGX_MAX_ERROR_STR+1]; 给加了1
-                                              //比如你定义 char tmp[2]; 你如果last = tmp+2，那么last实际指向了tmp[2]，而tmp[2]在使用中是无效的
+    last = errstr + NGX_MAX_ERROR_STR;  
+    //last指向整个buffer最后去了【指向最后一个有效位置的后面也就是非有效位】，作为一个标记，防止输出内容超过这么长,
+    //其实我认为这有问题，所以我才在上边errstr[NGX_MAX_ERROR_STR+1]; 给加了1
+    //比如你定义 char tmp[2]; 你如果last = tmp+2，那么last实际指向了tmp[2]，而tmp[2]在使用中是无效的
                                                 
-    p = ngx_cpymem(errstr, "nginx: ", 7);     //p指向"nginx: "之后    
+    p = ngx_cpymem(errstr, "nginx: ", 7);    //p指向"nginx: "之后    
     
     va_start(args, fmt); //使args指向起始的参数
     p = ngx_vslprintf(p,last,fmt,args); //组合出这个字符串保存在errstr里

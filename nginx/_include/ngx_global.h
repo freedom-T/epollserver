@@ -9,6 +9,7 @@
 
 
 //结构定义
+//该结构体用于存储配置文件中=两边的名称和内容
 typedef struct _CConfItem
 {
 	char ItemName[50];
@@ -20,7 +21,6 @@ typedef struct
 {
 	int    log_level;   //日志级别 或者日志类型，ngx_macro.h里分0-8共9个级别
 	int    fd;          //日志文件描述符
-
 }ngx_log_t;
 
 
@@ -36,7 +36,7 @@ extern CThreadPool   g_threadpool;
 
 extern pid_t         ngx_pid;
 extern pid_t         ngx_parent;
-extern ngx_log_t     ngx_log;
+extern ngx_log_t     ngx_log; // 存储日志对象的全局变量
 extern int           ngx_process;   
 extern sig_atomic_t  ngx_reap;   
 extern int           g_stopEvent;
