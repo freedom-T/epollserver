@@ -14,6 +14,7 @@
 //结构定义------------------------------------
 #pragma pack (1) //对齐方式,1字节对齐【结构之间成员不做任何字节对齐：紧密的排列在一起】
 
+//注册
 typedef struct _STRUCT_REGISTER
 {
 	int           iType;          //类型
@@ -22,6 +23,7 @@ typedef struct _STRUCT_REGISTER
 
 }STRUCT_REGISTER, *LPSTRUCT_REGISTER;
 
+//登录
 typedef struct _STRUCT_LOGIN
 {
 	char          username[56];   //用户名 

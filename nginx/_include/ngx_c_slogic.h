@@ -25,7 +25,7 @@ public:
 	virtual void procPingTimeOutChecking(LPSTRUC_MSG_HEADER tmpmsg,time_t cur_time);      //心跳包检测时间到，该去检测心跳包是否超时的事宜，本函数只是把内存释放，子类应该重新事先该函数以实现具体的判断动作
 
 public:
-	virtual void threadRecvProcFunc(char *pMsgBuf);
+	virtual void threadRecvProcFunc(char *pMsgBuf); //线程接收处理函数
 };
 
 #endif
